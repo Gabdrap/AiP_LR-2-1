@@ -1,0 +1,31 @@
+#include <iostream>
+#include <Windows.h>
+using namespace std;
+
+int main() {
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
+	
+	float temp;
+	float speed;
+	char wind[5];
+	char prec;
+	char quit[5];
+
+
+	cout << "day 1:" << '\n';
+	cout << "temperature: " << '\n';
+	cin >> temp;
+	cout << "wind: " << '\n';
+	cin >> wind;
+	cout << "wind speed: " << '\n';
+	cin >> speed;
+	cout << "precipitation: " << '\n';
+	cin >> prec;
+	cout << "type quit to finish";
+	cin >> quit;
+	if (quit == "quit")
+	{
+		return 0;
+	}
+}

@@ -5,27 +5,27 @@ using namespace std;
 int main() {
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
-	
+
 	float temp;
 	float speed;
-	char wind[5];
-	char prec;
-	char quit[5];
+	char wind[20];
+	char prec[20];
+	int day;
+	int n = 1;
 
-
-	cout << "day 1:" << '\n';
-	cout << "temperature: " << '\n';
-	cin >> temp;
-	cout << "wind: " << '\n';
-	cin >> wind;
-	cout << "wind speed: " << '\n';
-	cin >> speed;
-	cout << "precipitation: " << '\n';
-	cin >> prec;
-	cout << "type quit to finish";
-	cin >> quit;
-	if (quit == "quit")
+	cout << "Сколько дней хотите учесть? Введите количество дней: ";
+	cin >> day;
+	for (day; day >= n; n++)
 	{
-		return 0;
+		cout << "day " << n << ":" << '\n';
+		cout << "temperature: " << '\n';
+		cin >> temp;
+		cout << "wind: " << '\n';
+		cin >> wind;
+		cout << "wind speed: " << '\n';
+		cin >> speed;
+		cout << "precipitation: " << '\n';
+		cin >> prec;
+		cout << "type quit to finish" << '\n';
 	}
 }

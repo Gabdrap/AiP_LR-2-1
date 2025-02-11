@@ -2,38 +2,54 @@
 #include <Windows.h>
 using namespace std;
 
-int main() {
-	SetConsoleCP(1251);
-	SetConsoleOutputCP(1251);
+struct dayn 
+{
+    float temp;
+    float speed;
+    char wind[20];
+    char prec[20];
+    int day;
+    float averageTemp;
+    float averageSpeed;
+};
 
-	float temp;
-	float speed;
-	char wind[20];
-	char prec[20];
-	int day;
-	int n = 1;
-	float averageTemp = 0;
-	float averageSpeed = 0;
+int main() 
+{
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
 
-	cout << "Сколько дней хотите учесть? Введите количество дней: ";
-	cin >> day;
-	for (day; n <= day; n++)
-	{
-		cout << "day " << n << ":" << '\n';
-		cout << "temperature: " << '\n';
-		cin >> temp;
-		averageTemp += temp;
-		cout << "wind: " << '\n';
-		cin >> wind;
-		cout << "wind speed: " << '\n';
-		cin >> speed;
-		averageSpeed += speed;
-		cout << "precipitation: " << '\n';
-		cin >> prec;
-		cout << "type quit to finish" << '\n';
-	}
-	float b = (averageTemp / day);
-	float c = (averageSpeed / day);
-	cout << "Average temperature: " << b << '\n';
-	cout << "Average wind speed: " << c << '\n';
+    dayn d;
+    d.averageTemp = 0;
+    d.averageSpeed = 0;
+
+    cout << "Сколько дней хотите учесть? Введите количество дней: ";
+    cin >> d.day;
+
+    for (int n = 1; n <= d.day; n++) 
+    {
+        cout << "day " << n << ":" << '\n';
+        cout << "temperature: " << '\n';
+        cin >> d.temp;
+        d.averageTemp += d.temp;
+
+        cout << "wind: " << '\n';
+        cin >> d.wind;
+
+        cout << "wind speed: " << '\n';
+        cin >> d.speed;
+        d.averageSpeed += d.speed;
+
+        cout << "precipitation: " << '\n';
+        cin >> d.prec;
+
+        cout << "type quit to finish" << '\n';
+    }
+
+    float b = d.averageTemp / d.day;
+    float c = d.averageSpeed / d.day;
+
+    cout << "Average temperature: " << b << '\n';
+    cout << "Average wind speed: " << c << '\n';
+
+    return 0;
 }

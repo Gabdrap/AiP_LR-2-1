@@ -7,10 +7,13 @@ struct dayn
     float temp;
     float speed;
     char wind[20];
-    char prec[20];
+    int prec;
     int day;
     float averageTemp;
     float averageSpeed;
+    int rain;
+    int snow;
+    int noPrecs;
 };
 
 int main() 
@@ -21,6 +24,9 @@ int main()
     dayn d;
     d.averageTemp = 0;
     d.averageSpeed = 0;
+    d.rain = 0;
+    d.snow = 0;
+    d.noPrecs = 0;
 
     cout << "Сколько дней хотите учесть? Введите количество дней: ";
     cin >> d.day;
@@ -39,8 +45,17 @@ int main()
         cin >> d.speed;
         d.averageSpeed += d.speed;
 
-        cout << "precipitation: " << '\n';
+        cout << "precipitation: 1 - rain, 2 - snow, 3 - no precs" << '\n';
         cin >> d.prec;
+        if (d.prec == 1) {
+            d.rain++;
+        }
+        else if (d.prec == 2) {
+            d.snow++;
+        }
+        else if (d.prec == 3) {
+            d.noPrecs++;
+
 
         cout << "type quit to finish" << '\n';
     }
@@ -50,6 +65,17 @@ int main()
 
     cout << "Average temperature: " << b << '\n';
     cout << "Average wind speed: " << c << '\n';
-
+    if (d.rain >= d.snow && d.rain >= d.noPrecs) 
+    {
+        cout << "Наиболее частые осадки: дождь" << endl;
+    }
+    else if (d.snow >= d.rain && d.snow >= d.noPrecs) 
+    {
+        cout << "Наиболее частые осадки: снег" << endl;
+    }
+    else 
+    {
+        cout << "Наиболее частые осадки: без осадков" << endl;
+    }
     return 0;
 }

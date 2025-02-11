@@ -12,20 +12,28 @@ int main() {
 	char prec[20];
 	int day;
 	int n = 1;
+	float averageTemp = 0;
+	float averageSpeed = 0;
 
 	cout << "Сколько дней хотите учесть? Введите количество дней: ";
 	cin >> day;
-	for (day; day >= n; n++)
+	for (day; n <= day; n++)
 	{
 		cout << "day " << n << ":" << '\n';
 		cout << "temperature: " << '\n';
 		cin >> temp;
+		averageTemp += temp;
 		cout << "wind: " << '\n';
 		cin >> wind;
 		cout << "wind speed: " << '\n';
 		cin >> speed;
+		averageSpeed += speed;
 		cout << "precipitation: " << '\n';
 		cin >> prec;
 		cout << "type quit to finish" << '\n';
 	}
+	float b = (averageTemp / day);
+	float c = (averageSpeed / day);
+	cout << "Average temperature: " << b << '\n';
+	cout << "Average wind speed: " << c << '\n';
 }

@@ -8,7 +8,7 @@ struct dayn
     float temp;
     float speed;
     char wind[20];
-    int prec;
+    char prec[4];
     float averageTemp;
     float averageSpeed;
     int rain;
@@ -42,9 +42,9 @@ int main()
         cin >> d.speed;
         d.averageSpeed += d.speed;
 
-        cout << "precipitation: 1 - rain, 2 - snow" << '\n';
+        cout << "precipitation: rain, snow" << '\n';
         cin >> d.prec;
-        if (d.prec == 1) {
+        if (strcmp(d.prec, "rain") == 0) {
             d.rain++;
         }
         else {
@@ -68,6 +68,10 @@ int main()
     if (d.rain >= d.snow)
     {
         cout << "Наиболее частые осадки: дождь" << endl;
+    }
+    else if (d.rain = d.snow)
+    {
+        cout << "Снега и дождя выпало одинаково" << endl;
     }
     else
     {

@@ -1,22 +1,21 @@
 #include <iostream>
 #include <Windows.h>
+#include <cstring>
 using namespace std;
 
-struct dayn 
+struct dayn
 {
     float temp;
     float speed;
     char wind[20];
     int prec;
-    int day;
     float averageTemp;
     float averageSpeed;
     int rain;
     int snow;
-    int noPrecs;
 };
 
-int main() 
+int main()
 {
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
@@ -26,14 +25,12 @@ int main()
     d.averageSpeed = 0;
     d.rain = 0;
     d.snow = 0;
-    d.noPrecs = 0;
+    int n = 0;
+    char quit[5];
 
-    cout << "Сколько дней хотите учесть? Введите количество дней: ";
-    cin >> d.day;
-
-    for (int n = 1; n <= d.day; n++) 
+    while (true)
     {
-        cout << "day " << n << ":" << '\n';
+        cout << "day " << n + 1 << ":" << '\n';
         cout << "temperature: " << '\n';
         cin >> d.temp;
         d.averageTemp += d.temp;
@@ -45,37 +42,37 @@ int main()
         cin >> d.speed;
         d.averageSpeed += d.speed;
 
-        cout << "precipitation: 1 - rain, 2 - snow, 3 - no precs" << '\n';
+        cout << "precipitation: 1 - rain, 2 - snow" << '\n';
         cin >> d.prec;
         if (d.prec == 1) {
             d.rain++;
         }
-        else if (d.prec == 2) {
+        else {
             d.snow++;
         }
-        else if (d.prec == 3) {
-            d.noPrecs++;
 
+        n++;
 
         cout << "type quit to finish" << '\n';
+        cin >> quit;
+
+        if (strcmp(quit, "quit") == 0) {
+            break;
+        }
     }
 
-    float b = d.averageTemp / d.day;
-    float c = d.averageSpeed / d.day;
-
+    float b = d.averageTemp / n;
+    float c = d.averageSpeed / n;
     cout << "Average temperature: " << b << '\n';
     cout << "Average wind speed: " << c << '\n';
-    if (d.rain >= d.snow && d.rain >= d.noPrecs) 
+    if (d.rain >= d.snow)
     {
         cout << "Наиболее частые осадки: дождь" << endl;
     }
-    else if (d.snow >= d.rain && d.snow >= d.noPrecs) 
+    else
     {
         cout << "Наиболее частые осадки: снег" << endl;
     }
-    else 
-    {
-        cout << "Наиболее частые осадки: без осадков" << endl;
-    }
+
     return 0;
 }

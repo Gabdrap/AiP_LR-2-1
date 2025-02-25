@@ -1,7 +1,6 @@
 #include <iostream>
 #include <Windows.h>
 #include <cstring>
-using namespace std;
 
 using namespace std;
 
@@ -26,7 +25,7 @@ double average(Weather weather[], int n, float& averageTemp, float& averageSpeed
     return 0;
 }
 
-double precipitation(Weather weather[], int n, int rain, int snow) {
+double precipitation(Weather weather[], int n, int& rain, int& snow) {
     rain = 0;
     snow = 0;
 

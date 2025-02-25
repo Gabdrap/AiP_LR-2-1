@@ -3,79 +3,97 @@
 #include <cstring>
 using namespace std;
 
-struct dayn
-{
+using namespace std;
+
+struct Weather {
     float temp;
     float speed;
-    char wind[20];
-    char prec[4];
-    float averageTemp;
-    float averageSpeed;
-    int rain;
-    int snow;
+    char prec[10];
 };
 
-int main()
-{
+double average(Weather weather[], int n, float& averageTemp, float& averageSpeed) {
+    float temperatureSum = 0;
+    float speedSum = 0;
+
+    for (int i = 0; i < n; i++) {
+        temperatureSum += weather[i].temp;
+        speedSum += weather[i].speed;
+    }
+
+    averageTemp = temperatureSum / n;
+    averageSpeed = speedSum / n;
+
+    return 0;
+}
+
+double precipitation(Weather weather[], int n, int rain, int snow) {
+    rain = 0;
+    snow = 0;
+
+    for (int i = 0; i < n; i++) {
+        if (strcmp(weather[i].prec, "rain") == 0) {
+            rain++;
+        }
+        else if (strcmp(weather[i].prec, "snow") == 0) {
+            snow++;
+        }
+    }
+
+    return 0;
+}
+
+int main() {
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
 
-    dayn d;
-    d.averageTemp = 0;
-    d.averageSpeed = 0;
-    d.rain = 0;
-    d.snow = 0;
+    Weather weather[100];
     int n = 0;
     char quit[5];
 
-    while (true)
-    {
+    while (true) {
         cout << "day " << n + 1 << ":" << '\n';
-        cout << "temperature: " << '\n';
-        cin >> d.temp;
-        d.averageTemp += d.temp;
 
-        cout << "wind: " << '\n';
-        cin >> d.wind;
+        cout << "temperature: ";
+        cin >> weather[n].temp;
 
-        cout << "wind speed: " << '\n';
-        cin >> d.speed;
-        d.averageSpeed += d.speed;
+        char wind[20];
+        cout << "wind: ";
+        cin >> wind;
 
-        cout << "precipitation: rain, snow" << '\n';
-        cin >> d.prec;
-        if (strcmp(d.prec, "rain") == 0) {
-            d.rain++;
-        }
-        else {
-            d.snow++;
-        }
+        cout << "wind speed: ";
+        cin >> weather[n].speed;
+
+        cout << "precipitation (rain/snow): ";
+        cin >> weather[n].prec;
 
         n++;
 
-        cout << "type quit to finish" << '\n';
+        cout << "type quit to finish: ";
         cin >> quit;
-
         if (strcmp(quit, "quit") == 0) {
             break;
         }
     }
 
-    float b = d.averageTemp / n;
-    float c = d.averageSpeed / n;
-    cout << "Average temperature: " << b << '\n';
-    cout << "Average wind speed: " << c << '\n';
-    if (d.rain >= d.snow)
-    {
+    float averageTemp = 0;
+    float averageSpeed = 0;
+    int rain = 0;
+    int snow = 0;
+
+    average(weather, n, averageTemp, averageSpeed);
+    precipitation(weather, n, rain, snow);
+
+    cout << "Average temperature: " << averageTemp << '\n';
+    cout << "Average wind speed: " << averageSpeed << '\n';
+
+    if (rain > snow) {
         cout << "Наиболее частые осадки: дождь" << endl;
     }
-    else if (d.rain = d.snow)
-    {
-        cout << "Снега и дождя выпало одинаково" << endl;
-    }
-    else
-    {
+    else if (snow > rain) {
         cout << "Наиболее частые осадки: снег" << endl;
+    }
+    else {
+        cout << "Дождя и снега впало одинаково" << endl;
     }
 
     return 0;
